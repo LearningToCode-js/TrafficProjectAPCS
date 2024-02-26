@@ -7,15 +7,14 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class Tester {
-//    Hello
     static boolean[][] grid;
-    static int desiredObstacleRange = 15;
-    static int numSimulations = 10_000;
-    static int targetRow = 6;
-    static int targetCol = 5;
-    static int numRowIntersections = 6;
-    static int numColIntersections = 5;
-    static int maxSteps = 100;
+    static int DESIRED_OBSTACLE_RANGE = 15;
+    static int NUM_SIMULATIONS_PER_OBSTACLE_COUNT = 250_000;
+    static int TARGET_ROW = 6;
+    static int TARGET_COL = 5;
+    static int NUM_HORIZONTAL_ROADS = 6;
+    static int NUM_VERTICAL_ROADS = 5;
+    static int MAX_STEPS_PER_SIMULATION = 100;
 
     public static void createNewGrid(int numRowIntersections, int numColIntersections) {
         grid = new boolean[2 * numRowIntersections-1][2 * numColIntersections-1];
@@ -25,6 +24,7 @@ public class Tester {
             }
         }
     }
+
     public static void fillObstacles(int numObstacles) {
         int totalPositions = grid.length * grid[0].length;
         for (int i = 0; i < numObstacles; i++) {
@@ -127,8 +127,8 @@ public class Tester {
             currentRow = tempArr[0];
             currentCol = tempArr[1];
             stepsTaken++;
-            if(stepsTaken >= maxSteps) {
-                return maxSteps;
+            if(stepsTaken >= MAX_STEPS_PER_SIMULATION) {
+                return MAX_STEPS_PER_SIMULATION;
             }
 
         }
@@ -198,7 +198,7 @@ public class Tester {
             System.out.println("New Current row: " + currentRow + ". New Current Col: " + currentCol);
             System.out.println();
             stepsTaken++;
-            if(stepsTaken >= maxSteps) {
+            if(stepsTaken >= MAX_STEPS_PER_SIMULATION) {
                 break;
             }
         }
@@ -259,10 +259,10 @@ public class Tester {
     }
 
     public static void main(String[] args) {
-        ArrayList<Integer>[] arrayOfArrayLists = new ArrayList[desiredObstacleRange+1];
-        runTestVisualization(targetRow, targetCol, 15, numRowIntersections, numColIntersections);
-        for (int numObstacles = 0; numObstacles <= desiredObstacleRange; numObstacles++) {
-            arrayOfArrayLists[numObstacles] = runSimulation(numSimulations, targetRow, targetCol, numObstacles, numRowIntersections, numColIntersections);
+        ArrayList<Integer>[] arrayOfArrayLists = new ArrayList[DESIRED_OBSTACLE_RANGE];
+//        runTestVisualization(TARGET_ROW, TARGET_COL, 15, numRowIntersections, numColIntersections);
+        for (int numObstacles = 1; numObstacles <= DESIRED_OBSTACLE_RANGE; numObstacles++) {
+            arrayOfArrayLists[numObstacles-1] = runSimulation(NUM_SIMULATIONS_PER_OBSTACLE_COUNT, TARGET_ROW, TARGET_COL, numObstacles, NUM_HORIZONTAL_ROADS, NUM_VERTICAL_ROADS);
             System.out.println("=================================");
             System.out.println();
             System.out.println("The statistics for " + numObstacles + " are:");
