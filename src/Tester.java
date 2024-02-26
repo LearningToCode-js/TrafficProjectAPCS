@@ -133,7 +133,6 @@ public class Tester {
         for (int i = 0; i < numSimulations; i++) {
             stepsArray.add(runOneSimulation(targetRow, targetCol, numObstacles, numRowIntersections, numColIntersections));
         }
-        System.out.println(stepsArray);
         return stepsArray;
     }
 
@@ -241,7 +240,7 @@ public class Tester {
             System.out.println();
             System.out.println("The statistics for " + numObstacles + " are:");
             System.out.println("----------------------------------");
-            getStatistics(arrayOfArrayLists[numObstacles]);
+            getStatistics(arrayOfArrayLists[numObstacles-1]);
         }
     }
 }
