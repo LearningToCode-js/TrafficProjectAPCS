@@ -2,7 +2,6 @@
 // due 02272024 TUE
 // Purpose: Project 2B class to execute program
 
-// We do a little bit of trolling
 import java.util.ArrayList;
 import java.util.Collections;
 
