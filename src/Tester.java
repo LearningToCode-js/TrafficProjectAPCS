@@ -187,7 +187,6 @@ public class Tester {
         double median;
         double q3;
         int maximum;
-
         double sum = 0;
         for (int i = 0; i < arrayList.size(); i++) {
             sum += arrayList.get(i);
@@ -211,7 +210,6 @@ public class Tester {
                 q1 = (arrayList.get(middleIndex/2));
                 q3 = (arrayList.get((middleIndex+arrayList.size())/2));
             }
-
         } else {
             median = (arrayList.get(middleIndex));
             if (arrayList.size() % 4 == 1) {
@@ -234,7 +232,10 @@ public class Tester {
 
     public static void main(String[] args) {
         ArrayList<Integer>[] arrayOfArrayLists = new ArrayList[DESIRED_OBSTACLE_RANGE];
-//        runTestVisualization(TARGET_ROW, TARGET_COL, 15, numRowIntersections, numColIntersections);
+
+//        The below line of code nicely visualizes one simulation, but it is not necessary.
+//        runTestVisualization(TARGET_ROW, TARGET_COL, 15, NUM_HORIZONTAL_ROADS, NUM_VERTICAL_ROADS);
+
         for (int numObstacles = 1; numObstacles <= DESIRED_OBSTACLE_RANGE; numObstacles++) {
             arrayOfArrayLists[numObstacles-1] = runSimulation(NUM_SIMULATIONS_PER_OBSTACLE_COUNT, TARGET_ROW, TARGET_COL, numObstacles, NUM_HORIZONTAL_ROADS, NUM_VERTICAL_ROADS);
             System.out.println("=================================");
