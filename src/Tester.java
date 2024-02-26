@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class Tester {
+//    Hello
     static boolean[][] grid;
     static int desiredObstacleRange = 15;
     static int numSimulations = 10_000;
