@@ -3,18 +3,17 @@
 // Purpose: Project 2B class to execute program
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
 public class Tester {
     static boolean[][] grid;
-    static int DESIRED_OBSTACLE_RANGE = 15;
-    static int NUM_SIMULATIONS_PER_OBSTACLE_COUNT = 250_000;
-    static int TARGET_ROW = 6;
-    static int TARGET_COL = 5;
-    static int NUM_HORIZONTAL_ROADS = 6;
-    static int NUM_VERTICAL_ROADS = 5;
-    static int MAX_STEPS_PER_SIMULATION = 100;
+    final static int DESIRED_OBSTACLE_RANGE = 15;
+    final static int NUM_SIMULATIONS_PER_OBSTACLE_COUNT = 250_000;
+    final static int TARGET_ROW = 6;
+    final static int TARGET_COL = 5;
+    final static int NUM_HORIZONTAL_ROADS = 6;
+    final static int NUM_VERTICAL_ROADS = 5;
+    final static int MAX_STEPS_PER_SIMULATION = 100;
 
     public static void createNewGrid(int numRowIntersections, int numColIntersections) {
         grid = new boolean[2 * numRowIntersections-1][2 * numColIntersections-1];
@@ -23,9 +22,11 @@ public class Tester {
                 grid[i][j] = false;
             }
         }
+//      The grid created will hold both roads and obstacles in a 2D array of booleans.
     }
 
     public static void fillObstacles(int numObstacles) {
+//      Squares that contain obstacles will be set to true, while other squares remain false.
         int totalPositions = grid.length * grid[0].length;
         for (int i = 0; i < numObstacles; i++) {
             boolean foundEmptySpace = false;
@@ -51,22 +52,19 @@ public class Tester {
 //        Checking Boundaries and Obstacles
         if(currentRow == 0  || grid[currentRow-1][currentCol]) {
             possibleMovesList.remove("Up");
-//            System.out.println("Removed up");
         }
         if (currentRow == grid.length-1 || grid[currentRow+1][currentCol]) {
             possibleMovesList.remove("Down");
-//            System.out.println("Removed Down");
         }
 
         if(currentCol == 0 || grid[currentRow][currentCol-1]) {
             possibleMovesList.remove("Left");
-//            System.out.println("Removed Left");
         }
         if (currentCol == grid[0].length -1 || grid[currentRow][currentCol+1]) {
             possibleMovesList.remove("Right");
-//            System.out.println("Removed Right");
         }
 
+//      Logic for randomly selecting a direction among the shortest distances to the target.
         int minDistance = Integer.MAX_VALUE;
         ArrayList<String> shortestMoves = new ArrayList<>();
 
@@ -98,7 +96,6 @@ public class Tester {
         }
         int randomIndex = (int) (Math.random() * shortestMoves.size());
         String chosenDirection = shortestMoves.get(randomIndex);
-//        System.out.println("Selected: " + chosenDirection);
 
         if (chosenDirection.equals("Up")) {
             currentRow -= 2;
@@ -109,8 +106,6 @@ public class Tester {
         } else if (chosenDirection.equals("Left")) {
             currentCol-=2;
         }
-
-//        System.out.println("Checking in Here with Current row: " + currentRow + ". Current Col: " + currentCol);
         return new int[]{currentRow, currentCol};
     }
 
@@ -152,30 +147,9 @@ public class Tester {
             System.out.println();
         }
         System.out.println();
-
-//        for (int i = 1; i < grid.length; i+=2) {
-//            for (int j = 1; j < grid[0].length; j+=2) {
-//                grid[i][j] = '☐';
-//            }
-//        }
-//        for (int i = 1; i < grid.length; i+=2) {
-//            for (int j = 0; j < grid[0].length; j+=2) {
-//                grid[i][j] = '|';
-//            }
-//        }
-//        for (int i = 0; i < grid.length; i+=2) {
-//            for (int j = 1; j < grid[0].length; j+=2) {
-//                grid[i][j] = '—';
-//            }
-//        }
-//        for (int i = 0; i < grid.length; i+=2) {
-//            for (int j = 0; j < grid[0].length; j+=2) {
-//                grid[i][j] = '*';
-//            }
-//        }
     }
 
-//    runTestVisualization is for debugging purposes, it shows one simulation
+//  The runTestVisualization method is for debugging purposes. It helps visualize what occurs in one simulation for a given number of obstacles.
     public static void runTestVisualization(int targetRow, int targetCol, int numObstacles, int numRowIntersections, int numColIntersections) {
         System.out.println("This is the beginning of a new trial!");
         createNewGrid(numRowIntersections, numColIntersections);
