@@ -56,7 +56,6 @@ public class Tester {
         if (currentRow == grid.length-1 || grid[currentRow+1][currentCol]) {
             possibleMovesList.remove("Down");
         }
-
         if(currentCol == 0 || grid[currentRow][currentCol-1]) {
             possibleMovesList.remove("Left");
         }
