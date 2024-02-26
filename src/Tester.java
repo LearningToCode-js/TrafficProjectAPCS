@@ -151,27 +151,6 @@ public class Tester {
             System.out.println();
         }
         System.out.println();
-
-//        for (int i = 1; i < grid.length; i+=2) {
-//            for (int j = 1; j < grid[0].length; j+=2) {
-//                grid[i][j] = '☐';
-//            }
-//        }
-//        for (int i = 1; i < grid.length; i+=2) {
-//            for (int j = 0; j < grid[0].length; j+=2) {
-//                grid[i][j] = '|';
-//            }
-//        }
-//        for (int i = 0; i < grid.length; i+=2) {
-//            for (int j = 1; j < grid[0].length; j+=2) {
-//                grid[i][j] = '—';
-//            }
-//        }
-//        for (int i = 0; i < grid.length; i+=2) {
-//            for (int j = 0; j < grid[0].length; j+=2) {
-//                grid[i][j] = '*';
-//            }
-//        }
     }
 
 //    runTestVisualization is for debugging purposes, it shows one simulation
