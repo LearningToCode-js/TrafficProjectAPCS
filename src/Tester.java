@@ -9,7 +9,7 @@ public class Tester {
     static boolean[][] grid;
     final static int DESIRED_OBSTACLE_RANGE = 15;
     final static int NUM_SIMULATIONS_PER_OBSTACLE_COUNT = 250_000;
-    final static int TARGET_ROW = 6;
+    final static int TARGET_ROW = 5;
     final static int TARGET_COL = 5;
     final static int NUM_HORIZONTAL_ROADS = 6;
     final static int NUM_VERTICAL_ROADS = 5;
@@ -111,6 +111,7 @@ public class Tester {
     public static int runOneSimulation(int targetRow, int targetCol, int numObstacles, int numRowIntersections, int numColIntersections)  {
         createNewGrid(numRowIntersections, numColIntersections);
         fillObstacles(numObstacles);
+//      Adjust the target index to the correct array index
         targetRow = targetRow * 2 - 2;
         targetCol = targetCol * 2 - 2;
         int currentRow = 0;
@@ -147,7 +148,8 @@ public class Tester {
         System.out.println();
     }
 
-//  The runTestVisualization method is for debugging purposes. It helps visualize what occurs in one simulation for a given number of obstacles.
+//  The runTestVisualization method is primarily for debugging purposes.
+//  It helps visualize what occurs in one simulation for a given number of obstacles.
     public static void runTestVisualization(int targetRow, int targetCol, int numObstacles, int numRowIntersections, int numColIntersections) {
         System.out.println("This is the beginning of a new trial!");
         createNewGrid(numRowIntersections, numColIntersections);
@@ -232,7 +234,7 @@ public class Tester {
         ArrayList<Integer>[] arrayOfArrayLists = new ArrayList[DESIRED_OBSTACLE_RANGE];
 
 //        The below line of code nicely visualizes one simulation, but it is not necessary.
-//        runTestVisualization(TARGET_ROW, TARGET_COL, 15, NUM_HORIZONTAL_ROADS, NUM_VERTICAL_ROADS);
+//        runTestVisualization(TARGET_ROW, TARGET_COL, 1, NUM_HORIZONTAL_ROADS, NUM_VERTICAL_ROADS);
 
         for (int numObstacles = 1; numObstacles <= DESIRED_OBSTACLE_RANGE; numObstacles++) {
             arrayOfArrayLists[numObstacles-1] = runSimulation(NUM_SIMULATIONS_PER_OBSTACLE_COUNT, TARGET_ROW, TARGET_COL, numObstacles, NUM_HORIZONTAL_ROADS, NUM_VERTICAL_ROADS);
