@@ -231,18 +231,18 @@ public class Tester {
     }
 
     public static void main(String[] args) {
-        ArrayList<Integer>[] arrayOfArrayLists = new ArrayList[DESIRED_OBSTACLE_RANGE];
+        ArrayList<Integer>[] arrayOfArrayLists = new ArrayList[DESIRED_OBSTACLE_RANGE+1];
 
 //        The below line of code nicely visualizes one simulation, but it is not necessary.
 //        runTestVisualization(TARGET_ROW, TARGET_COL, 1, NUM_HORIZONTAL_ROADS, NUM_VERTICAL_ROADS);
 
-        for (int numObstacles = 1; numObstacles <= DESIRED_OBSTACLE_RANGE; numObstacles++) {
-            arrayOfArrayLists[numObstacles-1] = runSimulation(NUM_SIMULATIONS_PER_OBSTACLE_COUNT, TARGET_ROW, TARGET_COL, numObstacles, NUM_HORIZONTAL_ROADS, NUM_VERTICAL_ROADS);
+        for (int numObstacles = 0; numObstacles <= DESIRED_OBSTACLE_RANGE; numObstacles++) {
+            arrayOfArrayLists[numObstacles] = runSimulation(NUM_SIMULATIONS_PER_OBSTACLE_COUNT, TARGET_ROW, TARGET_COL, numObstacles, NUM_HORIZONTAL_ROADS, NUM_VERTICAL_ROADS);
             System.out.println("=================================");
             System.out.println();
             System.out.println("The statistics for " + numObstacles + " are:");
             System.out.println("----------------------------------");
-            getStatistics(arrayOfArrayLists[numObstacles-1]);
+            getStatistics(arrayOfArrayLists[numObstacles]);
         }
     }
 }
